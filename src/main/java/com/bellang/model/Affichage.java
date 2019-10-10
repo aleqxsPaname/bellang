@@ -1,4 +1,4 @@
-package com.bellang.back.model;
+package com.bellang.model;
 
 public class Affichage{
 

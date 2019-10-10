@@ -1,4 +1,4 @@
-package com.bellang.back.service;
+package com.bellang.service;
 
 import org.springframework.stereotype.Service;
 
@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class ServiceEssai {
 
     public void methodEssai(){
-        System.out.println("HELLO TU ES DS UN SERVICE");
+        System.out.println("DISPLAY FROM THE SERVICE");
     }
 
 }
