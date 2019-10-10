@@ -15,15 +15,12 @@ public class Application implements CommandLineRunner {
     private ServiceEssai serviceEssai;
 
     public static void main(String[] args) {
-        System.out.println("TEST D AFFICHAGE");
-
-        SpringApplication app = new SpringApplication(Application.class);
-        app.run(args);
+        System.out.println("DISPLAY BEFORE SPRING CONTEXT LOADING");
+        SpringApplication.run(Application.class, args);
     }
 
-
     public void run(String... args) {
-        System.out.println("OK FONCTIONNE ON EST DS RUN DE APPLICATION");
+        System.out.println("DISPLAY AFTER SPRING CONTEXT LOADING");
         serviceEssai.methodEssai();
     }
 
