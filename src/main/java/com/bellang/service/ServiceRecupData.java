@@ -1,6 +1,7 @@
 package com.bellang.service;
 
 import com.bellang.model.entity.Phrase;
+import com.bellang.model.repository.PhraseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,17 @@ import java.util.List;
 @Service
 public class ServiceRecupData {
 
-    @Autowired
+ /*   @Autowired
     private EntityManager em;
+*/
+    @Autowired
+    private PhraseRepository phraseRepository;
 
-    @Transactional
+   // @Transactional
     public void methodEssai(){
-        Phrase phrase = new Phrase("ajout via entityManager", "FR");
-        em.persist(phrase);
+        Phrase phrase = new Phrase("ajout via Repo JPA_SPRING_DATA", "FR");
+        phraseRepository.save(phrase);
+       // em.persist(phrase);
     }
 
     private void displayPhrase(List<Phrase> phrases) {
