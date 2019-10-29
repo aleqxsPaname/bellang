@@ -1,9 +1,12 @@
 package com.bellang.model.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "phrase", schema="bellang")
+@Getter
 public class Phrase {
 
     @Id
@@ -12,9 +15,9 @@ public class Phrase {
     private String content;
     private String langue;
 
-    public Phrase(String content, String langue){
+    public Phrase(String content, String language){
         this.content = content;
-        this.langue = langue;
+        this.langue = language;
     }
 
     public Phrase(){ };
