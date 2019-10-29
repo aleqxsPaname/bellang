@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 public class PhraseTest {
 
     @Test
-    public void should_return_null(){
+    public void should_return_attribut_when_creating_a_phrase_with_attribut(){
 
         // GIVEN
 

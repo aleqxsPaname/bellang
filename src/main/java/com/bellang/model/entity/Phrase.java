@@ -1,12 +1,14 @@
 package com.bellang.model.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "phrase", schema="bellang")
 @Getter
+@NoArgsConstructor
 public class Phrase {
 
     @Id
@@ -18,12 +20,6 @@ public class Phrase {
     public Phrase(String content, String language){
         this.content = content;
         this.langue = language;
-    }
-
-    public Phrase(){ };
-
-    public String getContent(){
-        return this.content;
     }
 
 }
