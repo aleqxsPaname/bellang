@@ -1,28 +1,16 @@
-/target/
 
-
-### PROPERTIES ###
-application-prd.properties
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+### Ignoring IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+### ignoring no code course (target contain duplicate)  ###
+target/
+
+
+### ignoring PROPERTIES (might get credential or any private data)  ###
+application-prd.properties
+
+
+

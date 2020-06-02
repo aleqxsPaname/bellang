@@ -20,7 +20,7 @@ public class ServiceRecupData {
 
    // @Transactional
     public void methodEssai(){
-        Phrase phrase = new Phrase("ajout via Repo JPA_SPRING_DATA", "FR");
+        Phrase phrase = new Phrase("ajout test via Repo JPA_SPRING_DATA", "FR");
         phraseRepository.save(phrase);
        // em.persist(phrase);
     }
