@@ -20,10 +20,8 @@ public class Slide {
 
     String imageReference;
 
-/*
     @ManyToOne
-    Diaporama diaporama;mmi
-*/
+    Diaporama diaporama;
 
 
 }

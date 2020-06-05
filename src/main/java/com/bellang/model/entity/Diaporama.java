@@ -27,18 +27,15 @@ public class Diaporama implements Serializable {
     @ManyToOne
     Category category;
 
-  /*  @ManyToOne
-    Publisher publisher;*/
-
     String name;
 
-    @OneToMany
+   /* @OneToMany
     @JoinColumn(name = "diaporama_id")
     List<Slide> slides = new ArrayList<>();
 
     public void addSlide(Slide slide){
         slides.add(slide);
-    }
+    }*/
 
 
 
