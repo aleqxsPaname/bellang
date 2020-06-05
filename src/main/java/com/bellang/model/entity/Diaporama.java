@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -28,6 +31,16 @@ public class Diaporama implements Serializable {
     Publisher publisher;*/
 
     String name;
+
+    @OneToMany
+    @JoinColumn(name = "diaporama_id")
+    List<Slide> slides = new ArrayList<>();
+
+    public void addSlide(Slide slide){
+        slides.add(slide);
+    }
+
+
 
 
 }
