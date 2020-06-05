@@ -13,6 +13,8 @@ public class Publisher {
 
     @Id
     @Size(min = 3, max = 15)
-    String name;
+    String pseudo;
+
+    Email email;
 }
 */

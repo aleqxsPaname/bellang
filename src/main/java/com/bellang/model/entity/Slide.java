@@ -22,7 +22,7 @@ public class Slide {
 
 /*
     @ManyToOne
-    Diaporama diaporama;
+    Diaporama diaporama;mmi
 */
 
 
