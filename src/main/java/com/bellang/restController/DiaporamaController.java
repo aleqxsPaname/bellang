@@ -66,12 +66,15 @@ public class DiaporamaController {
     @GetMapping("/diaporama")
     public Diaporama method(){
         Diaporama diaporama = generateSampleDiaporama();
-        diaporamaRepository.save(diaporama);
+
 
         List<Slide> slides = generateSampleSlides();
 
-        slides.stream().forEach(s-> s.setDiaporama(diaporama));
-        slides.stream().forEach(s-> slideRepository.save(s));
+        diaporama.setSlides(slides);
+        diaporamaRepository.save(diaporama);
+
+     /*   slides.stream().forEach(s-> s.setDiaporama(diaporama));
+        slides.stream().forEach(s-> slideRepository.save(s));*/
 
         return diaporama;
     }

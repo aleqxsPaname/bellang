@@ -29,15 +29,12 @@ public class Diaporama implements Serializable {
 
     String name;
 
-   /* @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "diaporama_id")
     List<Slide> slides = new ArrayList<>();
 
     public void addSlide(Slide slide){
         slides.add(slide);
-    }*/
-
-
-
+    }
 
 }
