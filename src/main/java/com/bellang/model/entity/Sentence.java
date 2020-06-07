@@ -19,13 +19,13 @@ public class Sentence {
 
     private FrontTemplate template;
 
-    @ManyToOne
-    private Slide slide;
+/*    @ManyToOne
+    private Slide slide;*/
 
-    public Sentence(String content, FrontTemplate template, Slide slide){
+    public Sentence(String content, FrontTemplate template){
         this.content = content;
         this.template = template;
-        this.slide = slide;
+    //    this.slide = slide;
     }
 
 }

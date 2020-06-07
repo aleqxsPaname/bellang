@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -14,14 +16,23 @@ public class Slide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    Long ordering;
+    private Long ordering;
 
-    String imageReference;
+    private String imageReference;
 
    /* @ManyToOne
     Diaporama diaporama;*/
 
+    @OneToMany(cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "slide_id")
+    @OrderBy("template ASC")
+    private List<Sentence> sentences = new ArrayList<>();
+
+    public void addSentence(Sentence sentence){
+        this.sentences.add(sentence);
+        // we would add business rule to make sure FrontTemplate are always different
+    }
 
 }

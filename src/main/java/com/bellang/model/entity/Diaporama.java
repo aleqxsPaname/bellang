@@ -31,6 +31,7 @@ public class Diaporama implements Serializable {
 
     @OneToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "diaporama_id")
+    @OrderBy("ordering ASC")
     List<Slide> slides = new ArrayList<>();
 
     public void addSlide(Slide slide){
