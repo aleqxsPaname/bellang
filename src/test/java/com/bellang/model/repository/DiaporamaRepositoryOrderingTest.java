@@ -1,4 +1,4 @@
-package com.bellang.service;
+package com.bellang.model.repository;
 
 import com.bellang.model.entity.Category;
 import com.bellang.model.entity.Diaporama;
@@ -6,51 +6,68 @@ import com.bellang.model.entity.Sentence;
 import com.bellang.model.entity.Slide;
 import com.bellang.model.enumType.FrontTemplate;
 import com.bellang.model.enumType.Publish;
-import com.bellang.model.repository.CategoryRepository;
-import com.bellang.model.repository.DiaporamaRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class FullDiaporamaCreationService {
+import static org.assertj.core.api.Assertions.assertThat;
+
+
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class DiaporamaRepositoryOrderingTest {
+
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
-    private DiaporamaRepository diaporamaRepository;
+    DiaporamaRepository diaporamaRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
 
-    public List<Diaporama> generateFullDiaporama(){
-
-        createAndSaveInDB();
-        return retrieve();
-
-
-    }
-
+    @Test
     @Transactional
-    private void createAndSaveInDB(){
-        Diaporama diaporama = generateSampleDiaporama();
+    public void given_a_diaporama_with_2_disordered_slides__thoses_slides_should_be_ordered_when_retrieved_from_DB(){
+
+        //GIVEN
+        Diaporama diaporamaBeforeLoadingInDB = generateSampleDiaporama();
         List<Slide> slides = generateSampleSlides();
+        diaporamaBeforeLoadingInDB.setSlides(slides);
 
-        diaporama.setSlides(slides);
-        diaporamaRepository.save(diaporama);
+        saveInDBWithDinstinctTransaction(diaporamaBeforeLoadingInDB);
+
+        //WHEN
+        Diaporama diaporamaRetrievedFromDB = diaporamaRepository.findAll().get(0);
+
+        //THEN
+        assertThat(diaporamaBeforeLoadingInDB.getSlides().get(0).getOrdering()).isEqualTo(2);
+        assertThat(diaporamaRetrievedFromDB.getSlides().get(0).getOrdering()).isEqualTo(1);
 
     }
 
-    @Transactional
-    private List<Diaporama>  retrieve(){
-        List<Diaporama> diaporamas = diaporamaRepository.findAll();
-        diaporamas.get(0).getSlides().forEach(slide -> System.out.println(slide.getOrdering()));
-        return diaporamaRepository.findAll();
+    private void saveInDBWithDinstinctTransaction(Diaporama diaporama) {
 
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        em.getTransaction().begin();
+        em.persist(diaporama);
+        em.flush();
+        em.getTransaction().commit();
     }
+
 
     private Diaporama generateSampleDiaporama() {
 
@@ -72,12 +89,12 @@ public class FullDiaporamaCreationService {
 
         Slide slide = new Slide();
         slide.setImageReference("Paris_Eiffel_Tower.jpg");
-        slide.setOrdering(1);
+        slide.setOrdering(2);
         generateSentenceForThisSlide(slide, "Eiffel Tower");
 
         Slide slide2 = new Slide();
         slide2.setImageReference("Paris_Notre_Dame.jpg");
-        slide2.setOrdering(2);
+        slide2.setOrdering(1);
         generateSentenceForThisSlide(slide2, "Notre Dame Cathedral");
 
         slides.add(slide);

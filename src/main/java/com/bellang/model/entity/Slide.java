@@ -18,7 +18,7 @@ public class Slide {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long ordering;
+    private int ordering;
 
     private String imageReference;
 
@@ -27,7 +27,7 @@ public class Slide {
 
     @OneToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "slide_id")
-    @OrderBy("template ASC")
+    @OrderBy("template DESC")
     private List<Sentence> sentences = new ArrayList<>();
 
     public void addSentence(Sentence sentence){

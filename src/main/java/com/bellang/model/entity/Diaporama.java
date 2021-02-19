@@ -29,10 +29,10 @@ public class Diaporama implements Serializable {
 
     String name;
 
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "diaporama_id")
     @OrderBy("ordering ASC")
-    List<Slide> slides = new ArrayList<>();
+    private List<Slide> slides = new ArrayList<>();
 
     public void addSlide(Slide slide){
         slides.add(slide);

@@ -25,21 +25,20 @@ public class DiaporamaController {
 
 
 
-
-    @GetMapping("/diaporama")
-    public Diaporama method(){
+    @GetMapping("/diaporamas")
+    public List<Diaporama> method(){
 
         return fullDiaporamaCreation.generateFullDiaporama();
     }
 
-    @GetMapping("/diaporama/{id}")
+    @GetMapping("/diaporamas/{id}")
     public Diaporama getDiaporamaById(@PathVariable("id") Long id){
 
         Diaporama diaporama = diaporamaService.getDiaporamaFromId(id);
         return diaporama;
     }
 
-    @GetMapping("/diaporama/{id}/sentence")
+    @GetMapping("/diaporamas/{id}/sentences")
     public List<Sentence> getAllSentencesForADiaporama(@PathVariable("id") Long id){
         Diaporama diaporama = diaporamaService.getDiaporamaFromId(id);
         List<Sentence> sentences = diaporamaService.getOnlySentencesOfDiaporama(diaporama);
