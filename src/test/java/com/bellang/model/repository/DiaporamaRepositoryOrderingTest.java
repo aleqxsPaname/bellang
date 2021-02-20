@@ -2,7 +2,7 @@ package com.bellang.model.repository;
 
 import com.bellang.model.entity.Category;
 import com.bellang.model.entity.Diaporama;
-import com.bellang.model.entity.Sentence;
+import com.bellang.model.entity.VirtualSentence;
 import com.bellang.model.entity.Slide;
 import com.bellang.model.enumType.FrontTemplate;
 import com.bellang.model.enumType.Publish;
@@ -104,9 +104,9 @@ public class DiaporamaRepositoryOrderingTest {
     }
 
     private void generateSentenceForThisSlide(Slide slide, String content){
-        Sentence sentence = new Sentence("... still today it is the most visited monument in the world", FrontTemplate.BtmLeft);
-        Sentence sentence2 = new Sentence(content + " took many years to be build and was a masterpiece of its time", FrontTemplate.TopLeft);
-        slide.addSentence(sentence);
-        slide.addSentence(sentence2);
+        VirtualSentence virtualSentence = new VirtualSentence(1L, FrontTemplate.BtmLeft);
+        VirtualSentence virtualSentence2 = new VirtualSentence(2L, FrontTemplate.TopLeft);
+        slide.addSentence(virtualSentence);
+        slide.addSentence(virtualSentence2);
     }
 }

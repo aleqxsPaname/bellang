@@ -1,7 +1,8 @@
 package com.bellang.restController;
 
 import com.bellang.model.entity.Diaporama;
-import com.bellang.model.entity.Sentence;
+import com.bellang.model.entity.Version;
+import com.bellang.model.entity.VirtualSentence;
 
 import com.bellang.service.DiaporamaService;
 import com.bellang.service.FullDiaporamaCreationService;
@@ -38,11 +39,18 @@ public class DiaporamaController {
         return diaporama;
     }
 
-    @GetMapping("/diaporamas/{id}/sentences")
-    public List<Sentence> getAllSentencesForADiaporama(@PathVariable("id") Long id){
+    @GetMapping("/diaporamas/{id}/virtualSentences")
+    public List<VirtualSentence> getAllSentencesForADiaporama(@PathVariable("id") Long id){
         Diaporama diaporama = diaporamaService.getDiaporamaFromId(id);
-        List<Sentence> sentences = diaporamaService.getOnlySentencesOfDiaporama(diaporama);
-        return sentences;
+        List<VirtualSentence> virtualSentences = diaporamaService.getOnlySentencesOfDiaporama(diaporama);
+        return virtualSentences;
+    }
+
+    @GetMapping("/diaporamas/{diaporama_id}/{language}/versions")
+    public List<Version> getAllVersionsForADiaporama(@PathVariable Long diaporama_id, @PathVariable String language){
+        Diaporama diaporama = diaporamaService.getDiaporamaFromId(diaporama_id);
+        List<Version> virtualSentences = diaporamaService.getOnlyVersionOfDiaporama(diaporama);
+        return virtualSentences;
     }
 
 }

@@ -28,10 +28,10 @@ public class Slide {
     @OneToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "slide_id")
     @OrderBy("template DESC")
-    private List<Sentence> sentences = new ArrayList<>();
+    private List<VirtualSentence> virtualSentences = new ArrayList<>();
 
-    public void addSentence(Sentence sentence){
-        this.sentences.add(sentence);
+    public void addSentence(VirtualSentence virtualSentence){
+        this.virtualSentences.add(virtualSentence);
         // we would add business rule to make sure FrontTemplate are always different
     }
 
